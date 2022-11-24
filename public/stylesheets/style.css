@@ -4,6 +4,7 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   font-family: 'Josefin Sans', sans-serif;
   min-height: 100vh; 
+  font-size: 17px;
   margin: 0; 
   display: grid;
   grid-template-rows: auto 1fr auto;
@@ -59,8 +60,19 @@ label{
   margin: 10px 0px;
 }
 input, select{
-  width: 250px;
-  height: 25px;
+  width: 290px;
+  height: 28px;
+}
+h1{
+  text-align: center;
+  margin: 10px;
+}
+form{
+  text-align: center;
+  border: 2px solid black;
+  margin: 0px 10rem;
+  padding: 0.5rem;
+  box-shadow: 5px 5px 7px 3px rgb(58, 58, 58);
 }
 footer{
   background-color: rgb(16, 16, 16);
@@ -76,16 +88,15 @@ p{
 .btn-primary{
   border: 2px solid black !important;
   cursor: pointer;
-  font-size: large;
   font-weight: 600;
   padding: 5px 10px;
   border-radius: 6px;
   text-decoration: none;
   color: #a1bda4;
-  background-color: rgb(16, 16, 16);
+  background-color: rgb(36, 35, 35);
 }
 .btn-primary:hover{
-  color: rgb(16, 16, 16);
+  color: rgb(36, 35, 35);
   background-color: #a1bda4;
   transition: ease-in-out 0.4s;
 }
