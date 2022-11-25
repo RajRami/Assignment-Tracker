@@ -1,0 +1,44 @@
+<h1>Edit an Assignment details</h1>
+<form method="post">
+    <fieldset>
+        <label for="courseTitle" class="col-2">Course Title:*</label>
+        <input name="courseTitle" id="courseTitle" placeholder="Enter Your Course Title" value="{{assignment.courseTitle}}" required>
+    </fieldset>
+    <fieldset>
+        <label for="typeOfWork" class="col-2">Type Of Work:*</label>
+        <select name="typeOfWork" id="typeOfWork" required>
+            <option selected>{{assignment.typeOfWork}}</option>
+            <option value="Assignment">Assignment</option>
+            <option value="Discussion">Discussion</option>
+            <option value="Lab">Lab</option>
+            <option value="Quiz">Quiz</option>
+            <option value="Other">Other</option>
+        </select>
+    </fieldset>
+    <fieldset>
+        <label for="titleOfWork" class="col-2">Title Of Work:*</label>
+        <input name="titleOfWork" id="titleOfWork" placeholder="Title of Work(ex. Lab-1, Quiz-1 etc.)" value="{{assignment.titleOfWork}}" required>
+    </fieldset>
+    <fieldset>
+        <label for="weighted" class="col-2">Weighted(%):*</label>
+        <input type="number" name="weighted" id="weighted" min="1" max="50" placeholder="Enter the weighted of your work" value="{{assignment.weighted}}" required>
+    </fieldset>
+    <fieldset>
+        <label for="dueDate" class="col-2">Due Date:*</label>
+        <input type="date" name="dueDate" id="dueDate" min="return getDate()" value="{{assignment.dueDate}}" required>
+    </fieldset>
+    <button class="btn btn-primary offset-2">Update</button>
+</form>
+<script>
+    //Getting current date
+    const date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+
+    //Getting date in a perticular format
+    let currentDate = `${year}-${month}-${day}`;
+
+    //Setting current date to min date
+    document.getElementById('dueDate').setAttribute('min', currentDate)
+</script>
