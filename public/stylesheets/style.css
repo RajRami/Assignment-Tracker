@@ -1,108 +1,170 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Signika&family=Ubuntu&display=swap');
+
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   font-family: 'Josefin Sans', sans-serif;
-  min-height: 100vh; 
+  min-height: 100vh;
   font-size: 17px;
-  margin: 0; 
+  margin: 0;
   display: grid;
   grid-template-rows: auto 1fr auto;
 }
-html{
+
+html {
   scroll-behavior: smooth;
 }
-header{
+
+header {
   position: sticky;
   top: 0;
   left: 0;
-  z-index:1;
+  z-index: 2;
 }
-main{
-  padding: 15px; 
-  background: linear-gradient(
-    to right,
-    rgb(255, 255, 255) 0%,
-    #a1bda4 70%,
-    #a1bda4 100%
-  ) !important;
+
+main {
+  padding: 15px;
+  min-height: 100vh;
+  position: relative;
 }
-ul{
+
+main::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-image: url(../images/bg.jpg);
+  background-size: cover;
+  opacity: 0.5;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+ul {
   display: flex;
   align-items: center;
   justify-content: center;
   background: rgb(16, 16, 16);
   height: 3rem;
 }
+
 ul li {
   font-size: large;
   font-weight: 600;
 }
-ul li a{
-  color: #a1bda4 !important;
+
+ul li a {
+  color: #b19bb3 !important;
   text-decoration: none;
   padding: 6px;
 }
-ul li a:hover{
+
+ul li a:hover {
   color: rgb(0, 0, 0) !important;
   transition: ease-in-out 0.4s;
-  background: linear-gradient(
-  to right,
-  rgb(255, 255, 255) 0%,
-  #a1bda4 70%,
-  #a1bda4 100%
-);
+  background: linear-gradient(to right,
+      rgb(255, 255, 255) 50%,
+      #b19bb3 50%,
+      #b19bb3 100%);
   border-radius: 5px;
   font-weight: bold;
 }
-label{
+
+label {
   font-size: larger;
   margin: 10px 0px;
 }
-input, select{
+
+input,
+select {
   width: 290px;
   height: 28px;
 }
-h1{
+
+h1 {
+  font-weight: 600;
   text-align: center;
   margin: 10px;
 }
-form{
+
+form {
   text-align: center;
   border: 2px solid black;
   margin: 0px 10rem;
   padding: 0.5rem;
   box-shadow: 5px 5px 7px 3px rgb(58, 58, 58);
 }
-footer{
+
+footer {
   background-color: rgb(16, 16, 16);
   height: 3rem;
 }
-p{
+
+p {
   font-size: larger;
 }
-.p-footer{
-  color: #a1bda4 !important;
+
+.p-footer {
+  color: #b19bb3 !important;
   text-align: center;
 }
-.btn-primary{
+
+.btn-primary {
   border: 2px solid black !important;
   cursor: pointer;
   font-weight: 600;
   padding: 5px 10px;
   border-radius: 6px;
   text-decoration: none;
-  color: #a1bda4;
-  background-color: rgb(36, 35, 35);
+  color: #b19bb3;
+  background-color: rgb(0, 0, 0);
 }
-.btn-primary:hover{
+
+.btn-primary:hover {
   color: rgb(36, 35, 35);
-  background-color: #a1bda4;
+  background: linear-gradient(to right,
+      rgb(255, 255, 255) 50%,
+      #b19bb3 50%,
+      #b19bb3 100%);
   transition: ease-in-out 0.4s;
 }
-fieldset{
+
+fieldset {
   margin: 10px 0px;
 }
-table{
+
+table {
   margin: 5px 0px;
+}
+
+/* Index/Home page css */
+
+.home {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  min-height: 70vh;
+  font-size: 22px;
+}
+
+.sec-left {  
+  padding: 25px;
+}
+
+.sec-right {
+  align-self: center;
+  text-align:justify;
+  padding: 25px;
+}
+
+.sec-left img {
+  height: 75vh;
+  width: 45vw;
+  display: block;
+  margin: auto;
+  opacity: 0.7;
 }

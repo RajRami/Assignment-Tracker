@@ -11,21 +11,22 @@
             <option value="Assignment">Assignment</option>
             <option value="Discussion">Discussion</option>
             <option value="Lab">Lab</option>
+            <option value="Test">Test</option>
             <option value="Quiz">Quiz</option>
             <option value="Other">Other</option>
         </select>
     </fieldset>
     <fieldset>
         <label for="titleOfWork" class="col-2">Title Of Work:*</label>
-        <input name="titleOfWork" id="titleOfWork" placeholder="Title of Work(ex. Lab-1, Quiz-1 etc.)" value="{{assignment.titleOfWork}}" required>
+        <input name="titleOfWork" id="titleOfWork" placeholder="Ex.Lab-1-Read data, Quiz-1 Auth. etc." value="{{assignment.titleOfWork}}" required>
     </fieldset>
     <fieldset>
         <label for="weighted" class="col-2">Weighted(%):*</label>
-        <input type="number" name="weighted" id="weighted" min="1" max="50" placeholder="Enter the weighted of your work" value="{{assignment.weighted}}" required>
+        <input type="number" name="weighted" id="weighted" min="1" max="50" step="0.5" placeholder="Enter the weighted of your work" value="{{assignment.weighted}}" required>
     </fieldset>
     <fieldset>
         <label for="dueDate" class="col-2">Due Date:*</label>
-        <input type="date" name="dueDate" id="dueDate" min="return getDate()" value="{{assignment.dueDate}}" required>
+        <input type="date" name="dueDate" id="dueDate" value="{{assignment.dueDate}}" required>
     </fieldset>
     <button class="btn btn-primary offset-2">Update</button>
 </form>
