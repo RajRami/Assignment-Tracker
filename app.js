@@ -6,6 +6,10 @@ var logger = require('morgan');
 
 const indexRouter = require('./controllers/index');
 const assignmentsRouter = require('./controllers/assignments');
+const authRouter = require('./controllers/auth');
+
+const passport = require('passport')
+const session = require('express-session')
 
 var app = express();
 
@@ -13,6 +17,26 @@ var app = express();
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
+
+//Passport config for auth
+app.use(session({
+  secret: process.env.PASSPORT_SECRET,
+  resave: true,
+  saveUninitialized: false
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
+
+const User = require('./models/userModel')
+passport.use(User.createStrategy())
+
+//Let passport read/write user dta to/from session variable
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
+
+
+
 const mongoose = require('mongoose')
 mongoose.connect(process.env.DATABASE_URL).then(() => {
   console.log('Connected to Database')
@@ -32,6 +56,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/assignments', assignmentsRouter);
+app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
