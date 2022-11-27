@@ -6,18 +6,18 @@ const User = require('../models/userModel')
 
 // GET: /auth/register => show register form
 router.get('/register', (req, res) => {
-    res.render('auth/register', { 
+    res.render('auth/register', {
         title: 'User Registration'
     })
 })
 
 // POST: /auth/register => create new user and redirect to /assignments
 router.post('/register', (req, res) => {
-    User.register(new User({username: req.body.username}), req.body.password, (err, user) => {
-        if (err){
+    User.register(new User({ username: req.body.username }), req.body.password, (err, user) => {
+        if (err) {
             console.log(err)
         }
-        else{
+        else {
             req.login(user, (err) => {
                 res.redirect('/assignments')
             })
@@ -50,13 +50,25 @@ router.post('/login', passport.authenticate('local', {
 router.get('/logout', (req, res, next) => {
     req.session.messages = []
     req.logout((err) => {
-        if(err){
+        if (err) {
             return next(err)
         }
-        else{
+        else {
             res.redirect('/auth/login')
         }
     })
+})
+
+//GET: /auth/google => perform google sing in attempt
+router.get('/google', passport.authenticate('google', {
+    scope: ['profile']
+}), (req, res) => { })
+
+//GET: /auth/google/callback => handle return of user from google
+router.get('/google/callback', passport.authenticate('google', {
+    failureRedirect: '/auth/login'
+}), (req, res) => {
+    res.redirect('/assignments')
 })
 
 //Make public
