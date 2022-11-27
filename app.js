@@ -44,7 +44,7 @@ passport.use(new GoogleStrategy({
   callbackURL: process.env.GOOGLE_CALLBACK_URL
 },
   (accessToken, refreshToken, profile, done) => {
-    User.findOrCreate({oauthId: profile.id}, {
+    User.findOrCreate({ oauthId: profile.id }, {
       username: profile.displayName,
       oauthPrvider: 'Google',
       created: Date.now()
@@ -54,7 +54,27 @@ passport.use(new GoogleStrategy({
   }
 ))
 
+//Github auth config
+const githubStrategy = require('passport-github2').Strategy;
+
+passport.use(new githubStrategy({
+  clientID: process.env.GITHUB_CLIENT_ID,
+  clientSecret: process.env.GITHUB_CLIENT_SECRET,
+  callbackURL: process.env.GITHUB_CALLBACK_URL
+},
+  (accessToken, refreshToken, profile, done) => {
+    User.findOrCreate({ oauthId: profile.id }, {
+      username: profile.displayName,
+      oauthPrvider: 'Github',
+      created: Date.now()
+    }, (err, user) => {
+      return done(err, user)
+    })
+  }
+))
+
 const mongoose = require('mongoose');
+const { profile } = require('console');
 mongoose.connect(process.env.DATABASE_URL).then(() => {
   console.log('Connected to Database')
 }).catch(() => {
@@ -76,12 +96,12 @@ app.use('/assignments', assignmentsRouter);
 app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
