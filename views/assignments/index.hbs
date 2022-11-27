@@ -1,5 +1,7 @@
 <h1>List of Assignments</h1>
+{{#if user}}
 <a class="btn btn-primary" href="/assignments/create">Add a New Assignment</a>
+{{/if}}
 <table class="table">
     <thead class="table-dark">
         <tr>
@@ -19,10 +21,13 @@
             <th>{{this.titleOfWork}}</th>
             <th>{{this.weighted}}</th>
             <th>{{this.dueDate}}</th>
+            {{#if ../user}}
             <th><a href="/assignments/edit/{{this._id}}">Edit</a> |
-                <a href="/assignments/delete/{{this._id}}" class="text-danger" onclick="return confirmDelete()">Delete</a>
+                <a href="/assignments/delete/{{this._id}}" class="text-danger"
+                    onclick="return confirmDelete()">Delete</a>
             </th>
+            {{/if}}
         </tr>
-    {{/each}}
+        {{/each}}
     </tbody>
 </table>

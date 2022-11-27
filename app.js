@@ -31,7 +31,7 @@ app.use(passport.session())
 const User = require('./models/userModel')
 passport.use(User.createStrategy())
 
-//Let passport read/write user dta to/from session variable
+//Let passport read/write user data to/from session variable
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
