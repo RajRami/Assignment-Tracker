@@ -46,9 +46,10 @@ passport.use(new GoogleStrategy({
   (accessToken, refreshToken, profile, done) => {
     User.findOrCreate({ oauthId: profile.id }, {
       username: profile.displayName,
-      oauthPrvider: 'Google',
+      oauthProvider: profile.provider,
       created: Date.now()
     }, (err, user) => {
+      // console.log(profile)
       return done(err, user)
     })
   }
@@ -64,10 +65,11 @@ passport.use(new githubStrategy({
 },
   (accessToken, refreshToken, profile, done) => {
     User.findOrCreate({ oauthId: profile.id }, {
-      username: profile.displayName,
-      oauthPrvider: 'Github',
+      username: profile.username,
+      oauthProvider: profile.provider,
       created: Date.now()
     }, (err, user) => {
+      // console.log(profile)
       return done(err, user)
     })
   }

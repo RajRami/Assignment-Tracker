@@ -59,17 +59,33 @@ router.get('/logout', (req, res, next) => {
     })
 })
 
-//GET: /auth/google => perform google sing in attempt
+//GET: /auth/google => perform google sign in attempt
 router.get('/google', passport.authenticate('google', {
     scope: ['profile']
-}), (req, res) => { })
+}), (req, res) => { }
+)
 
 //GET: /auth/google/callback => handle return of user from google
 router.get('/google/callback', passport.authenticate('google', {
     failureRedirect: '/auth/login'
 }), (req, res) => {
+    // Successful authentication, redirect to /assignments
     res.redirect('/assignments')
 })
+
+//GET: /auth/github => Perform github sign in attempt 
+router.get('/github', passport.authenticate('github',{
+    scope: ['profile']
+}), (req, res) => {}
+)
+
+//GET: /auth/github/callback => handle return of user from github
+router.get('/github/callback', passport.authenticate('github', {
+    failureRedirect: '/login'
+}), (req, res) => {
+    // Successful authentication, redirect to /assignments
+    res.redirect('/assignments');
+});
 
 //Make public
 module.exports = router
